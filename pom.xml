@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <groupId>org.esa-sst-cci</groupId>
+    <artifactId>sst-cci-stat</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>core</module>        
+        <module>cems</module>        
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.esa.snap</groupId>
+                <artifactId>snap-core</artifactId>
+                <version>4.0.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.esa.snap</groupId>
+                <artifactId>snap-envisat-reader</artifactId>
+                <version>4.0.1</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <debug>true</debug>
+                    <encoding>UTF-8</encoding>
+                    <excludes>
+                        <exclude>.gitignore</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/mms.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-jnegre-maven</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/jnegre/maven</url>
+        </repository>
+        <repository>
+            <id>snap-repo-public</id>
+            <name>Public Maven Repository for SNAP</name>
+            <url>http://nexus.senbox.net/nexus/content/repositories/public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
